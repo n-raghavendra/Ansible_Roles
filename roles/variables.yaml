@@ -1,0 +1,11 @@
+cart_host: cart.awstraining.tech
+redis_host: redis.awstraining.tech
+payment_host: payment.awstraining.tech
+rabbitmq_host: rabbitmq.awstraining.tech
+mysql_host: mysql.awstraining.tech
+catalogue_host: catalogue.awstraining.tech
+shipping_host: shipping.awstraining.tech
+user_host: user.awstraining.tech
+web_host: web.awstraining.tech
+dispatch_host: dispatch.awstraining.tech
+mongodb_host: mongodb.awstraining.tech

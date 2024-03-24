@@ -1,0 +1,24 @@
+- name: nodejs setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: roboshop user setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: roboshopuser
+
+- name: appsetup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: appsetup
+
+- name: user setup
+  ansible.builtin.import_role:
+    name: commmon
+    tasks_from: systemd
+
+- name: mongo setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongodbsetup

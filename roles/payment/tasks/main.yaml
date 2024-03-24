@@ -1,0 +1,19 @@
+- name: roboshop user setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: roboshopuser
+
+- name: appsetup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: appsetup1
+
+- name: python setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python
+
+- name: services restart
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd

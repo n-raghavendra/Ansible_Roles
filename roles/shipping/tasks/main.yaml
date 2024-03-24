@@ -1,0 +1,30 @@
+- name: roboshop user setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: roboshopuser
+
+- name: appsetup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: appsetup1
+
+- name: java setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+
+- name: system setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+
+- name: mysql setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mysql
+  notify:
+  - restart_shipping
+
+
+
+

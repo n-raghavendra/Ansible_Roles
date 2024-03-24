@@ -1,0 +1,30 @@
+ - name: Copy mongo repo file
+    ansible.builtin.copy:
+      src: mongo.repo
+      dest: /etc/yum.repos.d/mongo.repo
+      remote_src: yes
+
+  - name: install mongodb
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present
+
+  - name: get the catalogue categories count
+    ansible.builtin.shell:  mongo --host {{mongodb_host}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+    register: products_count
+    when: component == "catalogue"
+
+  - name: load catalogue schema
+    ansible.builtin.shell: "mongo --host {{mongodb_host}} < /app/schema/{{component}}.js"
+    when: component == "catalogue" and products_count.stdout == "0"  # keep double quotes
+    ignore_errors: yes
+
+  - name: get the user categories count
+    ansible.builtin.shell:  mongo --host {{mongodb_host}} --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+    register: users_count
+    when: component == "user"
+
+  - name: load user schema
+    ansible.builtin.shell: "mongo --host {{mongodb_host}} < /app/schema/{{component}}.js"
+    when: component == "user" and users_count.stdout == "0"  # keep double quotes
+    ignore_errors: yes

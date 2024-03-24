@@ -1,0 +1,26 @@
+- name: nodejs setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+
+- name: roboshop user setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: roboshopuser
+
+- name: appsetup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: appsetup
+
+- name: services restart
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+
+- name: mongodb setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongodbsetup
+  notify:
+  - restart_catalogue
