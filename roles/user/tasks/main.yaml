@@ -15,7 +15,7 @@
 
 - name: user setup
   ansible.builtin.import_role:
-    name: commmon
+    name: common
     tasks_from: systemd
 
 - name: mongo setup
