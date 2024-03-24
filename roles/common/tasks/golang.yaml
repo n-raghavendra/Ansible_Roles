@@ -4,8 +4,7 @@
     state: present
 
 - name: install dependencies
-  ansible.builtin.shell: 
-    name: "{{item}}"
+  ansible.builtin.shell: "{{item}}"
   loop:
   - go mod init dispatch
   - go get
