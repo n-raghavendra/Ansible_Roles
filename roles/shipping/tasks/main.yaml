@@ -11,7 +11,7 @@
 - name: java setup
   ansible.builtin.import_role:
     name: common
-    tasks_from: systemd
+    tasks_from: java
 
 - name: system setup
   ansible.builtin.import_role:
